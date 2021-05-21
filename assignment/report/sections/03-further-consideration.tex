@@ -1,0 +1,22 @@
+This section will assess some further considerations regarding implementation in real-world VR systems and the problems that they might incur.
+
+\subsection{Assistance from Eye Tracking}\label{sec:eye-tracking}
+
+Foveated rendering~\cite{patney2016towards} is a technique whereby eye-tracking is used to dynamically adjust rendering quality dependent on what part of the screen is being looked at.
+LCA undistortion, aside from gaining the benefits of foveated rendering, may additionally benefit from eye tracking to allow areas of the screen being looked at to incorporate more advanced (but expensive) localised LCA models, while offering a worse but more computationally efficient alternative elsewhere on screen.
+Tying into the next topic, barrel distortion (as a correction for pincushion distortion) can make use of eye tracking by restoring objects being looked at to a higher resolution.
+Movement of the eye places the pupil off-centre relative to the origin of the lens.
+This deviation from the focal point causes additional distortion (mentioned in~\cite[ch.~5]{lavalle2020virtual}).
+While the eye tracking-based barrel distortion is being calculated, it also provides a convenient time to pre-distort the image to account for the pupil being misaligned with the focal point.
+
+\subsection{Barrel Distortion and Resolution}\label{sec:barrel-distortion-resolution}
+
+When performing barrel distortion, some parts of the image are more compressed than others.
+The primary effect this has on the image is the production of a fair amount of unusable pixels around the edge, effectively wasting the extra resolution this provides.
+As a result, the image reaching the eye (having undergone pincushion distortion) is of a lower effective resolution (as the space required by a larger number of pixels are actually output from a lower number, effectively causing a radial reduction in perceived quality).
+~\cite{lavalle2020virtual} mentions a solution which involves radially increasing the hardware resolution of the screen in line with the barrel distortion.
+
+For a given uniform display panel resolution, supersampling the rendering resolution (increasing it relative to that of the display panel) helps make use of the wasted space around the barrel distortion.
+It is worth noting that no matter the supersampling resolution, for a uniform display, there will always be a radial reduction in perceivable resolution.
+For modern headsets, if using a display panel of uniform resolution, such a resolution should match the lowest perceivable resolution at the corners of the screen.
+The more sensible option is to adopt the previously mentioned radially increasing resolution.

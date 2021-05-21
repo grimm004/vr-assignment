@@ -8,12 +8,16 @@
 \usepackage{xcolor}
 \usepackage{fontawesome}
 \usepackage{siunitx}
+\usepackage{float}
+\usepackage[caption = false]{subfig}
 \usepackage[hidelinks]{hyperref}
 \usepackage{url}
 
+\DeclareMathOperator{\arctantwo}{arctan2}
+
 \begin{document}
 
-    \title{Virtual Reality Assignment}
+    \title{Software-based Correction of Radial Lens Distortion}
 
     \author{\IEEEauthorblockN{wcrr51}
     \IEEEauthorblockA{\textit{Department of Computer Science} \\
@@ -24,21 +28,30 @@
     \maketitle
     
     \begin{abstract}
-        This report looks at designing, implementing and evaluating a Virtual Reality (VR) lens distortion correction system.
+        This paper looks at the implementation and evaluating of a virtual reality lens distortion correction system.
+        Using a simplified version of Brown's radial distortion model, this paper provides two implementations for pincushion distortion pre-correction using the Unity Game Engine.
+        Lateral Chromatic Aberration is also considered and a simple correction model is implemented and demonstrated.
     \end{abstract}
     
     \begin{IEEEkeywords}
-        Virtual reality, lens distortion, distortion correction.
+        Virtual reality, lens, pincushion distortion, barrel distortion, lateral chromatic aberration, distortion correction.
     \end{IEEEkeywords}
 
-    \section{Introduction}\label{sec:introduction}
+    For implementation and runtime usage details, see \texttt{README.txt}.
+
+    \section{Introduction and Background}\label{sec:introduction}
     \input{sections/00-introduction}
 
-    ~\cite{brown1966decentering}
+    \section{Pincushion Distortion Correction}\label{sec:pincushion-distortion}
+    \input{sections/01-pincushion-distortion}
+
+    \section{LCA Correction}\label{sec:lca-correction}
+    \input{sections/02-lca-correction}
+
+    \section{Further Consideration for VR}\label{sec:further-consideration}
+    \input{sections/03-further-consideration}
 
     \bibliographystyle{IEEEtran}
     \bibliography{references}
-    \vspace{12pt}
-    \color{red}
 
 \end{document}
